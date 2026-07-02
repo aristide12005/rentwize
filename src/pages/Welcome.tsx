@@ -53,10 +53,6 @@ export const Welcome: React.FC = () => {
           
           <div className="video-container-wrapper">
             {/* Floating UI Elements */}
-            <div className="float-card float-left">
-              <ShieldCheck size={20} color="#4CA771" />
-              <span>100% Verified</span>
-            </div>
             <div className="float-card float-right">
               <EyeOff size={20} color="#4CA771" />
               <span>Zero Public Listings</span>
