@@ -11,12 +11,12 @@ export const ListingCard: React.FC<ListingCardProps> = ({ listing, onClick }) =>
   return (
     <div className="listing-card glass-panel" onClick={() => onClick(listing.id)}>
       <div className="listing-image-container">
-        <img src={listing.imageUrl} alt={listing.title} className="listing-image" />
-        <div className="listing-badge">{listing.type === 'housing' ? 'Logement' : 'Article'}</div>
+        <img src={listing.imageUrls[0]} alt={listing.title} className="listing-image" />
+        <div className="listing-badge">{listing.type === 'room' ? 'Chambre' : 'Appartement'}</div>
       </div>
       <div className="listing-content">
         <h3 className="listing-title">{listing.title}</h3>
-        <p className="listing-price">{listing.price} FCFA{listing.type === 'housing' ? '/mois' : ''}</p>
+        <p className="listing-price">{listing.price.toLocaleString()} FCFA/mois</p>
         
         <div className="listing-details">
           <div className="detail-item">

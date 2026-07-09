@@ -1,166 +1,123 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { ShieldCheck, ArrowRightLeft, FileCheck2, EyeOff } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export const Welcome: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleScroll = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <div className="welcome-page" style={{ fontFamily: 'Poppins, sans-serif' }}>
-      
-      {/* 1. Global Navigation Bar */}
-      <nav style={{ 
-        position: 'sticky', 
-        top: 0, 
-        zIndex: 100, 
-        backgroundColor: 'rgba(234, 249, 231, 0.9)', 
-        backdropFilter: 'blur(12px)', 
-        padding: '16px 40px', 
-        display: 'flex', 
-        justifyContent: 'space-between', 
-        alignItems: 'center', 
-        borderBottom: '1px solid rgba(1, 50, 55, 0.05)' 
-      }}>
-        <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#013237' }}>RentWise</div>
-        <Link to="/login" className="btn btn-primary">University Login</Link>
-      </nav>
+    <div className="welcome-v3">
+      <header className="welcome-v3-header">
+        <nav>
+          <div className="logo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#3B7A57" strokeWidth="2" strokeLinecap="round">
+              <circle cx="8" cy="8" r="4.5"/>
+              <path d="M11 11l9 9"/>
+              <path d="M16.5 15.5l2.5-2.5"/>
+              <path d="M19 18l2-2"/>
+            </svg>
+            Rentwize
+          </div>
+          <div className="nav-links">
+            <a href="#how" onClick={(e) => { e.preventDefault(); handleScroll('how'); }}>How it works</a>
+            <a href="#trust" onClick={(e) => { e.preventDefault(); handleScroll('trust'); }}>Trust & Safety</a>
+            <a href="#story" onClick={(e) => { e.preventDefault(); handleScroll('story'); }}>About</a>
+          </div>
+          <button className="nav-cta" onClick={() => navigate('/login')}>Get Started</button>
+        </nav>
+      </header>
 
-      {/* 2. The Hero Section (Split Layout) */}
-      <section className="welcome-hero-split">
-        <div className="hero-content">
-          <h1 style={{ color: '#013237', fontWeight: 700 }}>
-            The Smart Way to Secure Your Off-Campus Lifestyle.
-          </h1>
-          <p style={{ color: '#013237', opacity: 0.8, lineHeight: 1.6 }}>
-            Join the verified network where incoming students and graduating seniors securely hand over leases, furniture, and local knowledge.
-          </p>
-          <Link to="/signup" className="btn btn-primary" style={{ padding: '16px 32px', fontSize: '1.125rem' }}>
-            Unlock Campus Network
-          </Link>
-        </div>
-        <div className="hero-visual">
-          <img 
-            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop" 
-            alt="Student on campus holding keys" 
-          />
+      <section className="hero">
+
+        <h1>List your room, <span className="accent">safely.</span></h1>
+        <p>Find the next trusted student to take over your place — verified users, a simple process, complete peace of mind.</p>
+        <div className="hero-ctas">
+          <button className="btn-primary" onClick={() => navigate('/login')}>Get Started Now</button>
+          <button className="btn-secondary" onClick={() => handleScroll('how')}>See How It Works</button>
         </div>
       </section>
 
-      {/* 3. The Video Section */}
-      <section style={{ backgroundColor: '#C0E6BA', padding: '100px 20px', textAlign: 'center' }}>
-        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-          <h2 style={{ color: '#013237', fontSize: '2.5rem', marginBottom: '60px', fontWeight: 700 }}>
-            See How The Handover Works.
-          </h2>
-          
-          <div className="video-container-wrapper">
-            {/* Floating UI Elements */}
-            <div className="float-card float-right">
-              <EyeOff size={20} color="#4CA771" />
-              <span>Zero Public Listings</span>
-            </div>
+      <section className="section section-alt" id="how">
+        <div className="section-head">
+          <div className="eyebrow">Process</div>
+          <h2>How Rentwize works</h2>
+          <p>Three simple steps to pass on your keys.</p>
+        </div>
 
-            <div className="video-player">
-              <iframe 
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&showinfo=0&rel=0&autoplay=0&loop=1&mute=1" 
-                title="RentWise Experience Documentary"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-              ></iframe>
-            </div>
+        <div className="steps">
+          <div className="step-connector"></div>
+          <div className="step-card">
+            <div className="step-num">01</div>
+            <h3>Post your room</h3>
+            <p>Create a quick listing. We only accept verified student emails to keep the platform safe.</p>
+          </div>
+          <div className="step-card">
+            <div className="step-num">02</div>
+            <h3>We connect you</h3>
+            <p>Interested students reach out securely. You choose who takes over your lease.</p>
+          </div>
+          <div className="step-card">
+            <div className="step-num">03</div>
+            <h3>Move out</h3>
+            <p>Pass on the keys and move on to your next adventure with zero stress.</p>
           </div>
         </div>
       </section>
 
-      {/* 4. The Three Pillars */}
-      <section style={{ padding: '100px 20px', backgroundColor: 'white' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px' }}>
-            
-            {/* Step 1 */}
-            <div className="feature-card">
-              <div className="feature-icon-wrapper">
-                <ShieldCheck size={32} />
-              </div>
-              <h3 style={{ color: '#013237', fontSize: '1.5rem', marginBottom: '16px' }}>Exclusive Verification</h3>
-              <p style={{ color: '#013237', opacity: 0.8, lineHeight: 1.6 }}>
-                Every user is verified through our partner universities. No strangers, no public access, no scams.
-              </p>
-            </div>
-
-            {/* Step 2 */}
-            <div className="feature-card">
-              <div className="feature-icon-wrapper">
-                <ArrowRightLeft size={32} />
-              </div>
-              <h3 style={{ color: '#013237', fontSize: '1.5rem', marginBottom: '16px' }}>Peer-to-Peer Handovers</h3>
-              <p style={{ color: '#013237', opacity: 0.8, lineHeight: 1.6 }}>
-                Graduating soon? List your room and sell your furniture directly to incoming students before they arrive.
-              </p>
-            </div>
-
-            {/* Step 3 */}
-            <div className="feature-card">
-              <div className="feature-icon-wrapper">
-                <FileCheck2 size={32} />
-              </div>
-              <h3 style={{ color: '#013237', fontSize: '1.5rem', marginBottom: '16px' }}>Institutional Security</h3>
-              <p style={{ color: '#013237', opacity: 0.8, lineHeight: 1.6 }}>
-                Digital condition reports and standardized contracts ensure your deposit and agreements are protected and legally binding.
-              </p>
-            </div>
-
+      <section className="section" id="trust">
+        <div className="trust">
+          <div className="trust-copy">
+            <div className="eyebrow">Trust & Safety</div>
+            <h2>Every student on Rentwize is verified — no exceptions.</h2>
+            <p>We restrict access to university email addresses, so every listing and every message comes from someone who's actually enrolled.</p>
+            <ul className="trust-list">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" strokeWidth="2">
+                  <path d="M8 12l3 3 6-6"/><circle cx="12" cy="12" r="9"/>
+                </svg> 
+                University email verification on every account
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" strokeWidth="2">
+                  <path d="M8 12l3 3 6-6"/><circle cx="12" cy="12" r="9"/>
+                </svg> 
+                Secure, in-platform messaging only
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" strokeWidth="2">
+                  <path d="M8 12l3 3 6-6"/><circle cx="12" cy="12" r="9"/>
+                </svg> 
+                Reported listings reviewed within 24 hours
+              </li>
+            </ul>
+          </div>
+          <div className="trust-visual">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1000" alt="Safety and Trust" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
         </div>
       </section>
 
-      {/* 5. The Trust & Partnership Footer */}
-      <footer style={{ backgroundColor: '#013237', padding: '60px 0 30px', overflow: 'hidden' }}>
-        
-        {/* Trust Banner */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '40px', paddingLeft: '40px', marginBottom: '60px' }}>
-          <span style={{ color: '#C0E6BA', fontSize: '1.125rem', fontWeight: 500, whiteSpace: 'nowrap', zIndex: 2 }}>
-            Trusted by students from:
-          </span>
-          <div className="marquee-container">
-            <div className="marquee-content">
-              <span className="marquee-logo">Groupe ISM</span>
-              <span className="marquee-logo">Sup de Co</span>
-              <span className="marquee-logo">BEM Dakar</span>
-              <span className="marquee-logo">UCAD</span>
-              <span className="marquee-logo">AFI L'UE</span>
-              <span className="marquee-logo">IAM</span>
-              {/* Duplicate for seamless infinite scroll */}
-              <span className="marquee-logo">Groupe ISM</span>
-              <span className="marquee-logo">Sup de Co</span>
-              <span className="marquee-logo">BEM Dakar</span>
-              <span className="marquee-logo">UCAD</span>
-              <span className="marquee-logo">AFI L'UE</span>
-              <span className="marquee-logo">IAM</span>
-            </div>
-          </div>
+      <section className="section section-alt" id="story">
+        <div className="testimonial">
+          <div className="avatar">A</div>
+          <blockquote>"I built Rentwize to make student housing safe and simple. By restricting access to verified university emails, we've eliminated scams so you can confidently pass on your room."</blockquote>
+          <div className="name">Aristide</div>
+          <div className="role">Founder, Rentwize</div>
         </div>
+      </section>
 
-        {/* Footer Links */}
-        <div style={{ 
-          maxWidth: '1200px', 
-          margin: '0 auto', 
-          padding: '0 40px', 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          alignItems: 'center',
-          borderTop: '1px solid rgba(255, 255, 255, 0.1)',
-          paddingTop: '30px',
-          flexWrap: 'wrap',
-          gap: '20px'
-        }}>
-          <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'white' }}>RentWise</div>
-          <div style={{ display: 'flex', gap: '24px' }}>
-            <a href="#" style={{ color: 'rgba(255, 255, 255, 0.6)', textDecoration: 'none', fontSize: '0.875rem' }}>Privacy Policy</a>
-            <a href="#" style={{ color: 'rgba(255, 255, 255, 0.6)', textDecoration: 'none', fontSize: '0.875rem' }}>Terms of Service</a>
-            <a href="#" style={{ color: 'rgba(255, 255, 255, 0.6)', textDecoration: 'none', fontSize: '0.875rem' }}>Contact Support</a>
-          </div>
-        </div>
+      <section className="section final-cta">
+        <h2>Ready to pass on your keys?</h2>
+        <p>Join the verified network of students subletting with confidence.</p>
+        <button className="btn-primary" onClick={() => navigate('/login')}>Get Started Now</button>
+      </section>
+
+      <footer>
+        © 2026 Rentwize. Built for students, by students.
       </footer>
-
     </div>
   );
 };

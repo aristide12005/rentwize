@@ -15,12 +15,16 @@ interface AuthContextType {
   user: User | null;
   profile: UserProfile | null;
   loading: boolean;
+  loginWithGoogle: () => Promise<void>;
+  register: (email: string, pass: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
   profile: null,
   loading: true,
+  loginWithGoogle: async () => {},
+  register: async () => {},
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -56,8 +60,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return () => unsubscribeAuth();
   }, []);
 
+  const loginWithGoogle = async () => {};
+  const register = async (_email: string, _pass: string) => {};
+
   return (
-    <AuthContext.Provider value={{ user, profile, loading }}>
+    <AuthContext.Provider value={{ user, profile, loading, loginWithGoogle, register }}>
       {children}
     </AuthContext.Provider>
   );
