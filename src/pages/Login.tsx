@@ -8,7 +8,7 @@ export const Login: React.FC = () => {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { register } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
@@ -16,8 +16,8 @@ export const Login: React.FC = () => {
     if (!email) return;
     try {
       setLoading(true);
-      // For prototype: using register since login Email/Pass might not be fully wired
-      await register(email, password || 'rentwizeDummyPass123!');
+      // Use the proper login method from AuthContext
+      await login(email, password || 'rentwizeDummyPass123!');
       navigate('/post');
     } catch (error) {
       console.error(error);
